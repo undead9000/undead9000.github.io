@@ -86,13 +86,15 @@ $(document).ready(function(){
 })
 
 function Hero(level, st, ag, body){
-    this.level = level;
-    this.st = st;
-    this.ag = ag;
-    this.body = body;
-    this.dmg = level * this.st;
-    this.block = this.st * 5 / 100;
-    this.dodge = this.ag * 5 / 100;
+    this.level = parseInt(level);
+    this.st = parseInt(st);
+    this.ag = parseInt(ag);
+    this.st_result = parseInt(level) + parseInt(st) - 1;
+    this.ag_result = parseInt(level) + parseInt(ag) - 1;
+    this.body = parseInt(body);
+    this.dmg = parseInt(level) * this.st_result;
+    this.block = this.st_result * 5 / 100;
+    this.dodge = this.ag_result * 5 / 100;
     this.hp = body * 10;
 }
 
@@ -100,6 +102,10 @@ function updateInfo() {
     $('.hero .config_param.level select').val(hero.level);
     $('.hero .config_param.st select').val(hero.st);
     $('.hero .config_param.ag select').val(hero.ag);
+
+    $('.hero .config_param.final-st').text(hero.st_result);
+    $('.hero .config_param.final-ag').text(hero.ag_result);
+
     $('.hero .config_param.body').text(hero.body);
     $('.hero .config_param.dmg').text(hero.dmg);
     $('.hero .config_param.block').text(hero.block);
@@ -109,6 +115,10 @@ function updateInfo() {
     $('.monster .config_param.level select').val(monster.level);
     $('.monster .config_param.st select').val(monster.st);
     $('.monster .config_param.ag select').val(monster.ag);
+
+    $('.monster .config_param.final-st').text(monster.st_result);
+    $('.monster .config_param.final-ag').text(monster.ag_result);
+
     $('.monster .config_param.body').text(monster.body);
     $('.monster .config_param.dmg').text(monster.dmg);
     $('.monster .config_param.block').text(monster.block);
